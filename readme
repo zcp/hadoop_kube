@@ -1,0 +1,24 @@
+1. kubectl create -f namenode.yaml
+2. kubectl create -f datanode.yaml
+3. kubectl exec -it hadoop-master /bin/bash
+#start sshd on hadoop-master
+4. /usr/sbin/sshd   
+5 add all slaves' ips to /etc/hosts
+6. kubectl exec -it hadoop-slave1 /bin/bash
+#start sshd on hadoop-slave1
+7. /usr/sbin/sshd   
+8 add all slaves' ips and master's ip to /etc/hosts
+9. cd /opt/hadoop/sbin on hadoop-master
+10 ./start-dfs.sh
+11. ./start-yarn.sh
+
+
+Now you  can access http://master-ip:50070
+
+To view Hadoop clusters and all applications, browse the following address into your browser.
+http://master-ip:8088
+
+you can run test.sh step by step
+
+
+

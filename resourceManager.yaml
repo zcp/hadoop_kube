@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: yarn-rm
+  labels:
+    app: yarn-rm
+spec:
+  containers:
+    - name: yarn-rm
+      image: kubeguide/hadoop
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 9000
+        - containerPort: 50070    
+      env:
+        - name: HADOOP_NODE_TYPE
+          value: rm
+        - name: HDFS_MASTER_SERVICE
+          valueFrom:
+            configMapKeyRef:
+              name: ku8-hadoop-conf
+              key: HDFS_MASTER_SERVICE
+        - name: HDOOP_YARN_MASTER
+          valueFrom:
+            configMapKeyRef:
+              name: ku8-hadoop-conf
+              key: HDOOP_YARN_MASTER          
+  restartPolicy: Always
